@@ -1,11 +1,9 @@
 package com.example.preferenceshelper
 
 import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.MutablePreferences
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.*
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
 /**
@@ -24,7 +22,7 @@ private class PreferencesHelperImpl(private val dataStore: DataStore<Preferences
         dataStore.data.map { snapshot -> snapshot[key] }
 
     override suspend fun <T> get(key: Preferences.Key<T>): T? =
-        dataStore.data.firstOrNull()?.get(key)
+        dataStore.data.first()[key]
 
     override suspend fun <T> save(key: Preferences.Key<T>, value: T) {
         dataStore.edit { preferences ->
@@ -40,10 +38,20 @@ private class PreferencesHelperImpl(private val dataStore: DataStore<Preferences
         return snapshot[key]!!
     }
 
-    override suspend fun <T> delete(key: Preferences.Key<T>): T? = get(key)?.also {
+    override suspend fun <T> delete(key: Preferences.Key<T>): T? =
+        deleteIf(key) { true }
+
+    override suspend fun <T> deleteIf(key: Preferences.Key<T>, predicate: (T) -> Boolean): T? {
+        var deletedValue: T? = null
         dataStore.edit { preferences ->
-            preferences.minusAssign(key)
+            val value = preferences[key]
+            if (value != null && predicate(value)) {
+                preferences.minusAssign(key)
+                deletedValue = value
+            }
         }
+
+        return deletedValue
     }
 
     override suspend fun batch(block: BatchScope.() -> Unit) {
@@ -57,9 +65,35 @@ private class PreferencesHelperImpl(private val dataStore: DataStore<Preferences
             preferences.clear()
         }
     }
+
+    override suspend fun clearButKeep(vararg keys: Preferences.Key<*>) {
+        dataStore.edit { preferences ->
+            val keyValues = keys.associateWith { key ->
+                preferences[key]
+            }
+
+            preferences.clear()
+
+            for ((key, value) in keyValues) {
+                @Suppress("UNCHECKED_CAST")
+                when (value) {
+                    is Int -> preferences[intPreferencesKey(key.name)] = value
+                    is Double -> preferences[doublePreferencesKey(key.name)] = value
+                    is String -> preferences[stringPreferencesKey(key.name)] = value
+                    is Boolean -> preferences[booleanPreferencesKey(key.name)] = value
+                    is Float -> preferences[floatPreferencesKey(key.name)] = value
+                    is Long -> preferences[longPreferencesKey(key.name)] = value
+                    is Set<*> -> preferences[stringSetPreferencesKey(key.name)] = value as Set<String>
+                }
+            }
+        }
+    }
 }
 
 private class BatchScopeImpl(private val mutablePreferences: MutablePreferences) : BatchScope {
+
+    override fun <T> get(key: Preferences.Key<T>): T? = mutablePreferences[key]
+
     override fun <T> save(key: Preferences.Key<T>, value: T) {
         mutablePreferences[key] = value
     }
@@ -70,7 +104,16 @@ private class BatchScopeImpl(private val mutablePreferences: MutablePreferences)
         }
     }
 
-    override fun <T> delete(key: Preferences.Key<T>): T? = mutablePreferences[key]?.also {
-        mutablePreferences.minusAssign(key)
-    }
+    override fun <T> delete(key: Preferences.Key<T>): T? =
+        deleteIf(key) { true }
+
+    override fun <T> deleteIf(key: Preferences.Key<T>, predicate: (T) -> Boolean): T? =
+        mutablePreferences[key]?.let { value ->
+            if (predicate(value)) {
+                mutablePreferences.minusAssign(key)
+                value
+            } else {
+                null
+            }
+        }
 }
