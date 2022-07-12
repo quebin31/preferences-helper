@@ -17,6 +17,9 @@ fun PreferencesHelper(dataStore: DataStore<Preferences>): PreferencesHelper =
 private class PreferencesHelperImpl(private val dataStore: DataStore<Preferences>) :
     PreferencesHelper {
 
+    override val data: Flow<Preferences>
+        get() = dataStore.data
+
     override fun <T> getAsFlow(key: Preferences.Key<T>): Flow<T?> =
         dataStore.data.map { snapshot -> snapshot[key] }
 

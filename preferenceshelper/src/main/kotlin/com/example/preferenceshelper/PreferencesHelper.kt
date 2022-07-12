@@ -26,6 +26,11 @@ interface BatchScope {
 interface PreferencesHelper {
 
     /**
+     * Return the underlying [Flow]<[Preferences]> in the DataStore instance.
+     */
+    val data: Flow<Preferences>
+
+    /**
      * Get a [Flow] which emits values linked to [key], may emit `null` if no such key-value
      * pair exists.
      */
