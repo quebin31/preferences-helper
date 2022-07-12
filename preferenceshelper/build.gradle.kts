@@ -30,6 +30,7 @@ android {
 
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
+        freeCompilerArgs = freeCompilerArgs + listOf("-opt-in=kotlin.RequiresOptIn")
     }
 
     testOptions {
@@ -41,9 +42,13 @@ android {
 
 dependencies {
     implementation(libs.androidx.core)
+    implementation(libs.coroutines.core)
     api(libs.androidx.datastore)
 
-    testImplementation(libs.coroutines.test)
+
     testImplementation(libs.junit4)
+    testImplementation(libs.strikt)
+    testImplementation(libs.coroutines.test)
     testImplementation(libs.robolectric)
+    testImplementation(libs.androidx.core.test)
 }

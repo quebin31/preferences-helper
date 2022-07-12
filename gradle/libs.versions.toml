@@ -9,7 +9,11 @@ android-lib = { id = "com.android.library", version.ref = "agp" }
 [libraries]
 androidx-core = { module = "androidx.core:core-ktx", version = "1.8.0" }
 androidx-datastore = { module = "androidx.datastore:datastore-preferences", version = "1.0.0" }
+androidx-core-test = { module = "androidx.test:core-ktx", version = "1.4.0" }
 
+coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
+
+strikt = { module = "io.strikt:strikt-core", version = "0.34.0" }
 junit4 = { module = "junit:junit", version = "4.13.2" }
 robolectric = { module = "org.robolectric:robolectric", version = "4.8" }
