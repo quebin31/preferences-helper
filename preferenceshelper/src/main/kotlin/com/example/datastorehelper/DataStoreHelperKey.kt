@@ -44,12 +44,3 @@ inline fun <reified T : Any> dataStoreHelperKey(name: String): DataStoreHelperKe
     @Suppress("UNCHECKED_CAST")
     return anyKey as DataStoreHelperKey<T>
 }
-
-private val Context.test by preferencesDataStore(name = "test")
-
-suspend fun foo(context: Context) {
-    val key = dataStoreHelperKey<Int>(name = "key_name")
-    val helper = DataStoreHelper(context.test)
-    helper.save(key, 3)
-    val value = helper.get(key)
-}

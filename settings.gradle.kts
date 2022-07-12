@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Datastore Helper"
-include(":datastorehelper")
+rootProject.name = "Preferences Helper"
+include(":preferenceshelper")
