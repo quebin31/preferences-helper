@@ -31,6 +31,12 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
+
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
@@ -38,5 +44,5 @@ dependencies {
     api(libs.androidx.datastore)
 
     testImplementation(libs.junit4)
-    androidTestImplementation(libs.androidx.junit)
+    testImplementation(libs.robolectric)
 }
