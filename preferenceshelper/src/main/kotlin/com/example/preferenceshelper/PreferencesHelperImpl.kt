@@ -8,7 +8,13 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.map
 
-internal class PreferencesHelperImpl(private val dataStore: DataStore<Preferences>) :
+/**
+ * Create a [PreferencesHelper] which wraps the given [dataStore].
+ */
+fun PreferencesHelper(dataStore: DataStore<Preferences>): PreferencesHelper =
+    PreferencesHelperImpl(dataStore)
+
+private class PreferencesHelperImpl(private val dataStore: DataStore<Preferences>) :
     PreferencesHelper {
 
     override fun <T> getAsFlow(key: Preferences.Key<T>): Flow<T?> =
