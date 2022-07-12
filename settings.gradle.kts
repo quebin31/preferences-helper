@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Datastore Helper"
-include(":app")
+include(":datastorehelper")
