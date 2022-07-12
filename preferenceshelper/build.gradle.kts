@@ -43,6 +43,7 @@ dependencies {
     implementation(libs.androidx.core)
     api(libs.androidx.datastore)
 
+    testImplementation(libs.coroutines.test)
     testImplementation(libs.junit4)
     testImplementation(libs.robolectric)
 }

@@ -1,6 +1,7 @@
 [versions]
 kotlin = "1.6.21"
 agp = "7.2.1"
+coroutines = "1.6.3"
 
 [plugins]
 android-lib = { id = "com.android.library", version.ref = "agp" }
@@ -9,5 +10,6 @@ android-lib = { id = "com.android.library", version.ref = "agp" }
 androidx-core = { module = "androidx.core:core-ktx", version = "1.8.0" }
 androidx-datastore = { module = "androidx.datastore:datastore-preferences", version = "1.0.0" }
 
+coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 junit4 = { module = "junit:junit", version = "4.13.2" }
 robolectric = { module = "org.robolectric:robolectric", version = "4.8" }
