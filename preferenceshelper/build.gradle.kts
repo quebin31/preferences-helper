@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.datastorehelper"
+    namespace = "com.quebin31.preferenceshelper"
     compileSdk = 32
 
     defaultConfig {
@@ -44,7 +44,6 @@ dependencies {
     implementation(libs.androidx.core)
     implementation(libs.coroutines.core)
     api(libs.androidx.datastore)
-
 
     testImplementation(libs.junit4)
     testImplementation(libs.strikt)

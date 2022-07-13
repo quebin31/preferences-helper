@@ -1,4 +1,4 @@
-package com.example.preferenceshelper
+package com.quebin31.preferenceshelper
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.*

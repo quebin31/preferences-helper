@@ -1,4 +1,4 @@
-package com.example.datastorehelper.test
+package com.quebin31.preferenceshelper.test
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

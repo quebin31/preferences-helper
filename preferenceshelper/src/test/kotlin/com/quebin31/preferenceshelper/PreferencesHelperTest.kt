@@ -1,11 +1,10 @@
-package com.example.datastorehelper
+package com.quebin31.preferenceshelper
 
 import android.content.Context
 import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.test.core.app.ApplicationProvider
-import com.example.datastorehelper.test.CoroutinesTestRule
-import com.example.preferenceshelper.*
+import com.quebin31.preferenceshelper.test.CoroutinesTestRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.flow.filterNotNull
