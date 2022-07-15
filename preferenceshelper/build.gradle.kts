@@ -42,8 +42,7 @@ android {
     }
 
     publishing {
-        multipleVariants {
-            allVariants()
+        singleVariant("release") {
             withJavadocJar()
             withSourcesJar()
         }
@@ -58,12 +57,12 @@ signing {
 afterEvaluate {
     publishing {
         publications {
-            register<MavenPublication>("default") {
+            register<MavenPublication>("release") {
                 groupId = "com.quebin31"
                 artifactId = "preferences-helper"
                 version = "1.0.0"
 
-                from(components["default"])
+                from(components["release"])
 
                 pom {
                     name.set("preferences-helper")
