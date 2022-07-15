@@ -51,7 +51,7 @@ android {
 }
 
 signing {
-    useInMemoryPgpKeys(rootProject.signingKeyId, rootProject.signingKey, rootProject.signingPassword)
+    useInMemoryPgpKeys(project.signingKey, project.signingPassword)
     sign(publishing.publications)
 }
 
@@ -95,7 +95,6 @@ afterEvaluate {
         }
     }
 }
-
 
 dependencies {
     implementation(libs.androidx.core)

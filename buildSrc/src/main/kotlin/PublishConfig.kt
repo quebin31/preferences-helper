@@ -19,9 +19,6 @@ val Project.ossrhPassword: String?
 val Project.sonatypeStagingProfileId: String?
     get() = getLocalPropertyOrEnvVar(property = "sonatypeStagingProfileId", env = "SONATYPE_STAGING_PROFILE_ID")
 
-val Project.signingKeyId: String?
-    get() = getLocalPropertyOrEnvVar(property = "signingKeyId", env = "SIGNING_KEY_ID")
-
 val Project.signingPassword: String?
     get() = getLocalPropertyOrEnvVar(property = "signingPassword", env = "SIGING_PASSWORD")
 
