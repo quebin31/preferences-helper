@@ -12,8 +12,8 @@ implementation("com.quebin31:preferences-helper:1.0.0")
 ```
 
 ## Increment counter example
-
-As per the official Preferences DataStore documentation you'd write the following to update a value:
+In order to see the benefits of using this library let's compare it to Preferences DataStore,
+as per the official Preferences DataStore documentation you'd write the following to update a value:
 
 ```kotlin
 val Context.dataStore by preferencesDatastore(name = "datastore") // top file declaration
@@ -75,4 +75,7 @@ helper.batch { // single transaction
 }
 ```
 
+## LICENSE
+This crate is licensed under the terms of the MIT License.
 
+See [LICENSE](LICENSE) to see the full text.
