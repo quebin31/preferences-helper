@@ -1,7 +1,8 @@
 # Preferences Helper
 
 Minimal add-on library that provides a nicer API for [Preferences DataStore](https://developer.android.com/topic/libraries/architecture/datastore#preferences-datastore) 
-which is more readable and convenient.
+which is more readable and convenient. I tend to write this same wrapper in all my projects and I've got
+tired of doing it manually so I decided to make it a library in case anyone else finds it useful. 
 
 ## Getting started
 Just include the following dependency in your Gradle script, no need to add any extra repository
@@ -10,6 +11,8 @@ if you're already using the Maven Central repository (which in most cases you'll
 ```kotlin
 implementation("com.quebin31:preferences-helper:1.0.0")
 ```
+
+For a comprehensive list of examples head to the [Guide](docs/guide.md).
 
 ## Increment counter example
 In order to see the benefits of using this library let's compare it to Preferences DataStore,
