@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
 /**
- * Create a [PreferencesHelper] which wraps the given [dataStore].
+ * Create a [PreferencesHelper] wrapping the given [dataStore].
  */
 fun PreferencesHelper(dataStore: DataStore<Preferences>): PreferencesHelper =
     PreferencesHelperImpl(dataStore)
